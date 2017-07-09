@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Open popup with requested settings.
+ */
+
 (function ($) {
 
   'use strict';
@@ -19,7 +24,7 @@
           if (popupContent.length > 0) {
             var dialog = Drupal.dialog(popupContent, popupSettings.dialog);
 
-            link.click(function(){
+            link.click(function () {
               if (popupSettings.modal) {
                 dialog.showModal();
               }

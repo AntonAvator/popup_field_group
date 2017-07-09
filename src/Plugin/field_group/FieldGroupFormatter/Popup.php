@@ -102,6 +102,20 @@ class Popup extends FieldGroupFormatterBase {
         ],
       ],
     ];
+    $form['popup_link']['link_suggestion'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['messages', 'messages--status']],
+      '#states' => [
+        'invisible' => [
+          'input.popup-link-show-link' => ['checked' => TRUE],
+        ],
+      ],
+      'message' => [
+        '#markup' => $this->t('To open this popup use: @link', [
+          '@link' => '<a href="#open-popup" class="' . $this->openPopupCssClass . '" data-target="' . $this->getGroupId() . '">' . $this->t('Open popup') . '</a>',
+        ]),
+      ],
+    ];
 
     $form['popup_labels'] = [
       '#type' => 'fieldset',
@@ -253,7 +267,7 @@ class Popup extends FieldGroupFormatterBase {
     // Add arbitrary extra CSS files from our config.
     if ($this->getSetting('extra_css')) {
       foreach ($this->expandFileNames($this->getSetting('extra_css')) as $uri) {
-        $element['#attached']['css'][$uri] = array('group' => JS_THEME);
+        $element['#attached']['css'][$uri] = ['group' => JS_THEME];
       }
     }
   }
@@ -310,7 +324,7 @@ class Popup extends FieldGroupFormatterBase {
    * Return popup JS settings.
    *
    * @return array
-   *  Popup JS settings.
+   *   Popup JS settings.
    */
   protected function getPopupJsSettings() {
 
